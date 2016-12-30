@@ -4,7 +4,7 @@
   "description": "sample api to measure distance",
   "main": "src/server.js",
   "scripts": {
-    "start": "babel-node src/server.js",
+    "start": "rimraf ./db.json && babel-node src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "BlackBox Vision",
@@ -14,7 +14,8 @@
     "babel-preset-es2015-native-modules": "^6.9.4",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "nedb": "^1.8.0"
+    "nedb": "^1.8.0",
+    "rimraf": "^2.5.4"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0"

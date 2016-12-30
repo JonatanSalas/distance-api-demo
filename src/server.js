@@ -1,8 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import DataStore from 'nedb';
+import Datastore from 'nedb';
 
-const awesomeDataStore = new DataStore({ filename: '/db.json' });
+const awesomeDataStore = new Datastore({ filename: './db.json' });
 const app = new express();
 
 awesomeDataStore.loadDatabase();
@@ -23,10 +23,10 @@ app.get('/api/distance/:id', (request, response) => {
 
 app.post('/api/distance', (request, response) => {
 	const { distance } = request.body;
-	
 	if (distance) {
+        console.info("Entrando if(distance)");
 		awesomeDataStore.insert(distance, (err, newDoc) => {
-			if (err) {
+		    if (err) {
 				response.status(500).send({ result: "error on insert!" });
 			}
 			
@@ -34,6 +34,7 @@ app.post('/api/distance', (request, response) => {
 				response.status(200).send({result: newDoc});
 			}
 		});
+
 	} else {
 		response.status(400).send({ result: "bad request" });
 	}
